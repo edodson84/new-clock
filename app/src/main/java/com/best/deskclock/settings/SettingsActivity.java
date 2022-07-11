@@ -27,6 +27,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
 import androidx.preference.DropDownPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.ListPreferenceDialogFragmentCompat;
@@ -46,6 +48,7 @@ import com.best.deskclock.data.DataModel.ThemeButtonBehavior;
 import com.best.deskclock.data.TimeZones;
 import com.best.deskclock.data.Weekdays;
 import com.best.deskclock.ringtone.RingtonePickerActivity;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.List;
 import java.util.Objects;
@@ -93,15 +96,23 @@ public final class SettingsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         mThemeBehavior = DataModel.getDataModel().getThemeButtonBehavior();
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.DARK) {
-            getTheme().applyStyle(R.style.Theme_DeskClock_Actionbar_Dark, true);
+            getTheme().applyStyle(R.style.Theme_DeskClock_Settings_Dark, true);
         }
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.LIGHT) {
-            getTheme().applyStyle(R.style.Theme_DeskClock_Actionbar_Light, true);
+            getTheme().applyStyle(R.style.Theme_DeskClock_Settings_Light, true);
         }
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.settings);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
 
+        // Enable the Up button
+        assert ab != null;
+        ab.setDisplayHomeAsUpEnabled(true);
+        CollapsingToolbarLayout coll_toolbar = findViewById(R.id.collapsing_toolbar_layout);
+        coll_toolbar.setTitle("Settings");
         mOptionsMenuManager.addMenuItemController(new NavUpMenuItemController(this))
                 .addMenuItemController(MenuItemControllerFactory.getInstance()
                         .buildMenuItemControllers(this));

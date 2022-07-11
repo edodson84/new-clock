@@ -27,17 +27,15 @@ import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.best.deskclock.AnimatorUtils;
@@ -50,7 +48,6 @@ import com.best.deskclock.data.DataModel;
 import com.best.deskclock.events.Events;
 import com.best.deskclock.provider.Alarm;
 import com.best.deskclock.provider.AlarmInstance;
-import com.best.deskclock.uidata.UiDataModel;
 
 import java.util.List;
 
@@ -61,13 +58,14 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
     public static final int VIEW_TYPE = R.layout.alarm_time_expanded;
 
     public final CheckBox repeat;
-    public final LinearLayout repeatDays;
+    //public final LinearLayout repeatDays;
+    public final ConstraintLayout repeatDays;
     public final CheckBox vibrate;
     public final TextView ringtone;
     public final TextView delete;
     private final TextView editLabel;
     private final CompoundButton[] dayButtons = new CompoundButton[7];
-    private final View hairLine;
+    //private final View hairLine;
 
     private final boolean mHasVibrator;
 
@@ -82,28 +80,51 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
         ringtone = itemView.findViewById(R.id.choose_ringtone);
         editLabel = itemView.findViewById(R.id.edit_label);
         repeatDays = itemView.findViewById(R.id.repeat_days);
-        hairLine = itemView.findViewById(R.id.hairline);
+        //hairLine = itemView.findViewById(R.id.hairline);
 
         final Context context = itemView.getContext();
-        itemView.setBackground(new LayerDrawable(new Drawable[]{
-                ContextCompat.getDrawable(context, R.drawable.alarm_background_expanded),
-                ThemeUtils.resolveDrawable(context, androidx.appcompat.R.attr.selectableItemBackground)
-        }));
 
         // Build button for each day.
         final LayoutInflater inflater = LayoutInflater.from(context);
-        final List<Integer> weekdays = DataModel.getDataModel().getWeekdayOrder().getCalendarDays();
-        for (int i = 0; i < 7; i++) {
-            final View dayButtonFrame = inflater.inflate(R.layout.day_button, repeatDays,
-                    false /* attachToRoot */);
-            final CompoundButton dayButton =
-                    dayButtonFrame.findViewById(R.id.day_button_box);
-            final int weekday = weekdays.get(i);
-            dayButton.setText(UiDataModel.getUiDataModel().getShortWeekday(weekday));
-            dayButton.setContentDescription(UiDataModel.getUiDataModel().getLongWeekday(weekday));
-            repeatDays.addView(dayButtonFrame);
-            dayButtons[i] = dayButton;
-        }
+        final View dayButtonFrame = inflater.inflate(R.layout.day_button, repeatDays,
+                false /* attachToRoot */);
+        final CompoundButton dayButton =
+                dayButtonFrame.findViewById(R.id.day_button_0);
+        dayButton.setText("S");
+        dayButton.setContentDescription("Sunday");
+        final CompoundButton dayButton2 =
+                dayButtonFrame.findViewById(R.id.day_button_1);
+        dayButton2.setText("M");
+        dayButton2.setContentDescription("Monday");
+        final CompoundButton dayButton3 =
+                dayButtonFrame.findViewById(R.id.day_button_2);
+        dayButton3.setText("T");
+        dayButton3.setContentDescription("Tuesday");
+        final CompoundButton dayButton4 =
+                dayButtonFrame.findViewById(R.id.day_button_3);
+        dayButton4.setText("W");
+        dayButton4.setContentDescription("Wednesday");
+        final CompoundButton dayButton5 =
+                dayButtonFrame.findViewById(R.id.day_button_4);
+        dayButton5.setText("T");
+        dayButton5.setContentDescription("Thursday");
+        final CompoundButton dayButton6 =
+                dayButtonFrame.findViewById(R.id.day_button_5);
+        dayButton6.setText("F");
+        dayButton6.setContentDescription("Friday");
+        final CompoundButton dayButton7 =
+                dayButtonFrame.findViewById(R.id.day_button_6);
+        dayButton7.setText("S");
+        dayButton7.setContentDescription("Saturday");
+        repeatDays.addView(dayButtonFrame);
+        dayButtons[0] = dayButton;
+        dayButtons[1] = dayButton2;
+        dayButtons[2] = dayButton3;
+        dayButtons[3] = dayButton4;
+        dayButtons[4] = dayButton5;
+        dayButtons[5] = dayButton6;
+        dayButtons[6] = dayButton7;
+
 
         // Cannot set in xml since we need compat functionality for API < 21
         final Drawable labelIcon = Utils.getVectorDrawable(context, R.drawable.ic_label);
@@ -221,10 +242,12 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
                 dayButton.setChecked(true);
                 dayButton.setTextColor(ThemeUtils.resolveColor(context,
                         android.R.attr.textColorPrimaryInverse));
+
             } else {
                 dayButton.setChecked(false);
                 dayButton.setTextColor(ThemeUtils.resolveColor(context,
                         android.R.attr.textColorPrimary));
+
             }
         }
         if (alarm.daysOfWeek.isRepeating()) {
@@ -279,7 +302,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
                 ObjectAnimator.ofFloat(vibrate, TRANSLATION_Y, 0f),
                 ObjectAnimator.ofFloat(editLabel, TRANSLATION_Y, 0f),
                 ObjectAnimator.ofFloat(preemptiveDismissButton, TRANSLATION_Y, 0f),
-                ObjectAnimator.ofFloat(hairLine, TRANSLATION_Y, 0f),
+                //ObjectAnimator.ofFloat(hairLine, TRANSLATION_Y, 0f),
                 ObjectAnimator.ofFloat(delete, TRANSLATION_Y, 0f),
                 ObjectAnimator.ofFloat(arrow, TRANSLATION_Y, 0f));
         animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -303,7 +326,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
         vibrate.setTranslationY(translationY);
         editLabel.setTranslationY(translationY);
         preemptiveDismissButton.setTranslationY(translationY);
-        hairLine.setTranslationY(translationY);
+        // hairLine.setTranslationY(translationY);
         delete.setTranslationY(translationY);
         arrow.setTranslationY(translationY);
     }
@@ -347,13 +370,12 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
         final int numberOfItems = countNumberOfItems();
 
         final View oldView = itemView;
-        final View newView = newHolder.itemView;
 
         final Animator backgroundAnimator = ObjectAnimator.ofPropertyValuesHolder(oldView,
                 PropertyValuesHolder.ofInt(AnimatorUtils.BACKGROUND_ALPHA, 255, 0));
         backgroundAnimator.setDuration(duration);
 
-        final Animator boundsAnimator = AnimatorUtils.getBoundsAnimator(oldView, oldView, newView);
+        final Animator boundsAnimator = AnimatorUtils.getBoundsAnimator(oldView, oldView, newHolder.itemView);
         boundsAnimator.setDuration(duration);
         boundsAnimator.setInterpolator(AnimatorUtils.INTERPOLATOR_FAST_OUT_SLOW_IN);
 
@@ -372,8 +394,8 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
                 View.ALPHA, 0f).setDuration(shortDuration);
         final Animator deleteAnimation = ObjectAnimator.ofFloat(delete, View.ALPHA, 0f)
                 .setDuration(shortDuration);
-        final Animator hairLineAnimation = ObjectAnimator.ofFloat(hairLine, View.ALPHA, 0f)
-                .setDuration(shortDuration);
+        //final Animator hairLineAnimation = ObjectAnimator.ofFloat(hairLine, View.ALPHA, 0f)
+        //  .setDuration(shortDuration);
 
         // Set the staggered delays; use the first portion (duration * (1 - 1/4 - 1/6)) of the time,
         // so that the final animation, with a duration of 1/4 the total duration, finishes exactly
@@ -386,7 +408,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
             startDelay += delayIncrement;
             dismissAnimation.setStartDelay(startDelay);
         }
-        hairLineAnimation.setStartDelay(startDelay);
+        //hairLineAnimation.setStartDelay(startDelay);
         startDelay += delayIncrement;
         editLabelAnimation.setStartDelay(startDelay);
         startDelay += delayIncrement;
@@ -402,7 +424,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
         final AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(backgroundAnimator, boundsAnimator, repeatAnimation,
                 repeatDaysAnimation, vibrateAnimation, ringtoneAnimation, editLabelAnimation,
-                deleteAnimation, hairLineAnimation, dismissAnimation);
+                deleteAnimation, dismissAnimation);
         return animatorSet;
     }
 
@@ -442,8 +464,8 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
                 .setDuration(longDuration);
         final Animator editLabelAnimation = ObjectAnimator.ofFloat(editLabel, View.ALPHA, 1f)
                 .setDuration(longDuration);
-        final Animator hairLineAnimation = ObjectAnimator.ofFloat(hairLine, View.ALPHA, 1f)
-                .setDuration(longDuration);
+        //final Animator hairLineAnimation = ObjectAnimator.ofFloat(hairLine, View.ALPHA, 1f)
+        //.setDuration(longDuration);
         final Animator deleteAnimation = ObjectAnimator.ofFloat(delete, View.ALPHA, 1f)
                 .setDuration(longDuration);
         final Animator arrowAnimation = ObjectAnimator.ofFloat(arrow, View.TRANSLATION_Y, 0f)
@@ -468,7 +490,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
         startDelay += delayIncrement;
         editLabelAnimation.setStartDelay(startDelay);
         startDelay += delayIncrement;
-        hairLineAnimation.setStartDelay(startDelay);
+        // hairLineAnimation.setStartDelay(startDelay);
         if (preemptiveDismissButton.getVisibility() == View.VISIBLE) {
             dismissAnimation.setStartDelay(startDelay);
             startDelay += delayIncrement;
@@ -478,7 +500,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
         final AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(backgroundAnimator, repeatAnimation, boundsAnimator,
                 repeatDaysAnimation, vibrateAnimation, ringtoneAnimation, editLabelAnimation,
-                deleteAnimation, hairLineAnimation, dismissAnimation, arrowAnimation);
+                deleteAnimation, dismissAnimation, arrowAnimation);
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -506,7 +528,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
         repeatDays.setAlpha(alpha);
         vibrate.setAlpha(alpha);
         ringtone.setAlpha(alpha);
-        hairLine.setAlpha(alpha);
+        //hairLine.setAlpha(alpha);
         delete.setAlpha(alpha);
         preemptiveDismissButton.setAlpha(alpha);
     }

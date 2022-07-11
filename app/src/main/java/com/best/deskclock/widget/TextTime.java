@@ -27,7 +27,6 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import androidx.annotation.VisibleForTesting;
 
@@ -41,7 +40,7 @@ import java.util.TimeZone;
  * Based on {@link android.widget.TextClock}, This widget displays a constant time of day using
  * format specifiers. {@link android.widget.TextClock} doesn't support a non-ticking clock.
  */
-public class TextTime extends TextView {
+public class TextTime extends androidx.appcompat.widget.AppCompatTextView {
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     static final CharSequence DEFAULT_FORMAT_12_HOUR = "h:mm a";

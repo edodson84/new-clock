@@ -184,10 +184,10 @@ public class RingtonePickerActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         DataModel.ThemeButtonBehavior mThemeBehavior = DataModel.getDataModel().getThemeButtonBehavior();
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.DARK) {
-            getTheme().applyStyle(R.style.Theme_DeskClock_Actionbar_Dark, true);
+            getTheme().applyStyle(R.style.Theme_DeskClock_RingtonePicker_Dark, true);
         }
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.LIGHT) {
-            getTheme().applyStyle(R.style.Theme_DeskClock_Actionbar_Light, true);
+            getTheme().applyStyle(R.style.Theme_DeskClock_RingtonePicker_Light, true);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ringtone_picker);
@@ -229,7 +229,7 @@ public class RingtonePickerActivity extends BaseActivity
         /**
          * Displays a set of selectable ringtones.
          */
-        mRecyclerView = (RecyclerView) findViewById(R.id.ringtone_content);
+        mRecyclerView = findViewById(R.id.ringtone_content);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.setAdapter(mRingtoneAdapter);
         mRecyclerView.setItemAnimator(null);

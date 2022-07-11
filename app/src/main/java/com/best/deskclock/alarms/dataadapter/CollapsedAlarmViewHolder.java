@@ -50,7 +50,7 @@ public final class CollapsedAlarmViewHolder extends AlarmItemViewHolder {
     public final TextView daysOfWeek;
     private final TextView alarmLabel;
     private final TextView upcomingInstanceLabel;
-    private final View hairLine;
+    //private final View hairLine;
 
     private float annotationsAlpha = CLOCK_ENABLED_ALPHA;
 
@@ -60,7 +60,7 @@ public final class CollapsedAlarmViewHolder extends AlarmItemViewHolder {
         alarmLabel = itemView.findViewById(R.id.label);
         daysOfWeek = itemView.findViewById(R.id.days_of_week);
         upcomingInstanceLabel = itemView.findViewById(R.id.upcoming_instance_label);
-        hairLine = itemView.findViewById(R.id.hairline);
+        //hairLine = itemView.findViewById(R.id.hairline);
 
         // Expand handler
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -198,8 +198,8 @@ public final class CollapsedAlarmViewHolder extends AlarmItemViewHolder {
                 ObjectAnimator.ofFloat(alarmLabel, View.ALPHA, 0f),
                 ObjectAnimator.ofFloat(daysOfWeek, View.ALPHA, 0f),
                 ObjectAnimator.ofFloat(upcomingInstanceLabel, View.ALPHA, 0f),
-                ObjectAnimator.ofFloat(preemptiveDismissButton, View.ALPHA, 0f),
-                ObjectAnimator.ofFloat(hairLine, View.ALPHA, 0f));
+                ObjectAnimator.ofFloat(preemptiveDismissButton, View.ALPHA, 0f));
+        //ObjectAnimator.ofFloat(hairLine, View.ALPHA, 0f));
         alphaAnimatorSet.setDuration((long) (duration * ANIM_SHORT_DURATION_MULTIPLIER));
 
         final View oldView = itemView;
@@ -219,8 +219,8 @@ public final class CollapsedAlarmViewHolder extends AlarmItemViewHolder {
                 ObjectAnimator.ofFloat(alarmLabel, View.ALPHA, annotationsAlpha),
                 ObjectAnimator.ofFloat(daysOfWeek, View.ALPHA, annotationsAlpha),
                 ObjectAnimator.ofFloat(upcomingInstanceLabel, View.ALPHA, annotationsAlpha),
-                ObjectAnimator.ofFloat(preemptiveDismissButton, View.ALPHA, annotationsAlpha),
-                ObjectAnimator.ofFloat(hairLine, View.ALPHA, annotationsAlpha));
+                ObjectAnimator.ofFloat(preemptiveDismissButton, View.ALPHA, annotationsAlpha));
+        //ObjectAnimator.ofFloat(hairLine, View.ALPHA, annotationsAlpha));
         final long standardDelay = (long) (duration * ANIM_STANDARD_DELAY_MULTIPLIER);
         alphaAnimatorSet.setDuration(standardDelay);
         alphaAnimatorSet.setStartDelay(duration - standardDelay);
@@ -261,7 +261,7 @@ public final class CollapsedAlarmViewHolder extends AlarmItemViewHolder {
         alarmLabel.setAlpha(alpha);
         daysOfWeek.setAlpha(alpha);
         upcomingInstanceLabel.setAlpha(alpha);
-        hairLine.setAlpha(alpha);
+        //hairLine.setAlpha(alpha);
         preemptiveDismissButton.setAlpha(alpha);
     }
 

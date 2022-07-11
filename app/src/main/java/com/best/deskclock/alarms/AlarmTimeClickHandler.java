@@ -21,6 +21,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.text.format.DateFormat;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.best.deskclock.AlarmClockFragment;
 import com.best.deskclock.LabelDialogFragment;
@@ -33,6 +36,8 @@ import com.best.deskclock.events.Events;
 import com.best.deskclock.provider.Alarm;
 import com.best.deskclock.provider.AlarmInstance;
 import com.best.deskclock.ringtone.RingtonePickerActivity;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.Calendar;
 
@@ -51,6 +56,9 @@ public final class AlarmTimeClickHandler {
     private final ScrollHandler mScrollHandler;
     private Alarm mSelectedAlarm;
     private Bundle mPreviousDaysOfWeekMap;
+
+    @TimeFormat
+    private int clockFormat;
 
     public AlarmTimeClickHandler(Fragment fragment, Bundle savedState,
                                  AlarmUpdateHandler alarmUpdateHandler, ScrollHandler smoothScrollController) {
@@ -165,7 +173,30 @@ public final class AlarmTimeClickHandler {
     public void onClockClicked(Alarm alarm) {
         mSelectedAlarm = alarm;
         Events.sendAlarmEvent(R.string.action_set_time, R.string.label_deskclock);
-        TimePickerDialogFragment.show(mFragment, alarm.hour, alarm.minutes);
+        // TimePickerDialogFragment.show(mFragment, alarm.hour, alarm.minutes);
+        Show(alarm.hour, alarm.minutes);
+    }
+
+    public void Show(int hour, int minute) {
+
+        clockFormat = TimeFormat.CLOCK_12H;
+        boolean isSystem24Hour = DateFormat.is24HourFormat(mFragment.getContext());
+
+        clockFormat = isSystem24Hour ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
+
+        MaterialTimePicker materialTimePicker = new MaterialTimePicker.Builder()
+                .setTimeFormat(clockFormat)
+                .setHour(hour)
+                .setMinute(minute)
+                .build();
+        Context context = mFragment.getContext();
+        materialTimePicker.show(((AppCompatActivity) context).getSupportFragmentManager(), "fragment_tag");
+
+        materialTimePicker.addOnPositiveButtonClickListener(dialog -> {
+            int newHour = materialTimePicker.getHour();
+            int newMinute = materialTimePicker.getMinute();
+            onTimeSet(newHour, newMinute);
+        });
     }
 
     public void dismissAlarmInstance(AlarmInstance alarmInstance) {

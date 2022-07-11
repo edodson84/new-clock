@@ -18,7 +18,6 @@ package com.best.deskclock.alarms;
 import static android.content.Context.ALARM_SERVICE;
 import static android.provider.Settings.System.NEXT_ALARM_FORMATTED;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.AlarmManager.AlarmClockInfo;
 import android.app.PendingIntent;
@@ -27,7 +26,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.provider.Settings;
@@ -224,7 +222,6 @@ public final class AlarmStateManager extends BroadcastReceiver {
     /**
      * Used in L and later devices where "next alarm" is stored in the Alarm Manager.
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private static void updateNextAlarmInAlarmManager(Context context, AlarmInstance nextAlarm) {
         // Sets a surrogate alarm with alarm manager that provides the AlarmClockInfo for the
         // alarm that is going to fire next. The operation is constructed such that it is ignored

@@ -100,7 +100,7 @@ public final class AlarmNotifications {
                         R.string.alarm_alert_predismiss_title))
                 .setContentText(AlarmUtils.getAlarmText(
                         context, instance, true /* includeLabel */))
-                .setColor(android.R.attr.colorAccent)
+                .setColor(com.google.android.material.R.attr.colorPrimary)
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setAutoCancel(false)
                 .setSortKey(createSortKey(instance))
@@ -219,7 +219,7 @@ public final class AlarmNotifications {
                     ALARM_UPCOMING_NOTIFICATION_CHANNEL_ID)
                     .setShowWhen(false)
                     .setContentIntent(firstUpcoming.contentIntent)
-                    .setColor(android.R.attr.colorAccent)
+                    .setColor(com.google.android.material.R.attr.colorPrimary)
                     .setSmallIcon(R.drawable.stat_notify_alarm)
                     .setGroup(UPCOMING_GROUP_KEY)
                     .setGroupSummary(true)
@@ -253,7 +253,7 @@ public final class AlarmNotifications {
             summary = new NotificationCompat.Builder(context, ALARM_MISSED_NOTIFICATION_CHANNEL_ID)
                     .setShowWhen(false)
                     .setContentIntent(firstMissed.contentIntent)
-                    .setColor(android.R.attr.colorAccent)
+                    .setColor(com.google.android.material.R.attr.colorPrimary)
                     .setSmallIcon(R.drawable.stat_notify_alarm)
                     .setGroup(MISSED_GROUP_KEY)
                     .setGroupSummary(true)
@@ -276,7 +276,7 @@ public final class AlarmNotifications {
                 .setContentTitle(instance.getLabelOrDefault(context))
                 .setContentText(context.getString(R.string.alarm_alert_snooze_until,
                         AlarmUtils.getFormattedTime(context, instance.getAlarmTime())))
-                .setColor(android.R.attr.colorAccent)
+                .setColor(com.google.android.material.R.attr.colorPrimary)
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setAutoCancel(false)
                 .setSortKey(createSortKey(instance))
@@ -322,7 +322,7 @@ public final class AlarmNotifications {
                 .setContentTitle(context.getString(R.string.alarm_missed_title))
                 .setContentText(instance.mLabel.isEmpty() ? alarmTime :
                         context.getString(R.string.alarm_missed_text, alarmTime, label))
-                .setColor(android.R.attr.colorAccent)
+                .setColor(com.google.android.material.R.attr.colorPrimary)
                 .setSortKey(createSortKey(instance))
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -366,7 +366,7 @@ public final class AlarmNotifications {
                 .setContentTitle(instance.getLabelOrDefault(service))
                 .setContentText(AlarmUtils.getFormattedTime(
                         service, instance.getAlarmTime()))
-                .setColor(android.R.attr.colorAccent)
+                .setColor(com.google.android.material.R.attr.colorPrimary)
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setOngoing(true)
                 .setAutoCancel(false)

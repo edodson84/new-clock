@@ -76,7 +76,7 @@ class StopwatchNotificationBuilder {
                     .setAction(StopwatchService.ACTION_PAUSE_STOPWATCH)
                     .putExtra(Events.EXTRA_EVENT_LABEL, eventLabel);
 
-            @DrawableRes final int icon1 = R.drawable.ic_pause_24dp;
+            @DrawableRes final int icon1 = R.drawable.ic_fab_pause;
             final CharSequence title1 = res.getText(R.string.sw_pause_button);
             final PendingIntent intent1 = Utils.pendingServiceIntent(context, pause);
             actions.add(new Action.Builder(icon1, title1, intent1).build());
@@ -109,7 +109,7 @@ class StopwatchNotificationBuilder {
                     .setAction(StopwatchService.ACTION_START_STOPWATCH)
                     .putExtra(Events.EXTRA_EVENT_LABEL, eventLabel);
 
-            @DrawableRes final int icon1 = R.drawable.ic_start_24dp;
+            @DrawableRes final int icon1 = R.drawable.ic_fab_play;
             final CharSequence title1 = res.getText(R.string.sw_start_button);
             final PendingIntent intent1 = Utils.pendingServiceIntent(context, start);
             actions.add(new Action.Builder(icon1, title1, intent1).build());
@@ -135,11 +135,15 @@ class StopwatchNotificationBuilder {
                 .setOngoing(running)
                 .setCustomContentView(content)
                 .setContentIntent(pendingShowApp)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setSortKey(nm.getStopwatchNotificationGroupKey())
                 .setAutoCancel(stopwatch.isPaused())
+                .setCategory(NotificationCompat.CATEGORY_EVENT)
                 .setPriority(Notification.PRIORITY_LOW)
                 .setSmallIcon(R.drawable.stat_notify_stopwatch)
-                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setColor(android.R.attr.colorAccent);
+                .setColor(com.google.android.material.R.attr.colorPrimary)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle());
+
 
         if (Utils.isNOrLater()) {
             notification.setGroup(nm.getStopwatchNotificationGroupKey());

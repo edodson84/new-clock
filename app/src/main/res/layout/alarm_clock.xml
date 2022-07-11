@@ -20,12 +20,15 @@
 
     <com.best.deskclock.AlarmRecyclerView
         android:id="@+id/alarms_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:clipToPadding="false"
         android:descendantFocusability="beforeDescendants"
-        android:fadingEdgeLength="0dp"
-        android:paddingBottom="@dimen/fab_height"
+        android:fadingEdgeLength="0.0dip"
+        android:paddingHorizontal="@dimen/fragment_recycler_view_padding_horizontal"
+        android:paddingLeft="@dimen/fragment_recycler_view_padding_horizontal"
+        android:paddingRight="@dimen/fragment_recycler_view_padding_horizontal"
+        android:paddingBottom="@dimen/tab_content_bottom_padding"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical"
         android:splitMotionEvents="false" />

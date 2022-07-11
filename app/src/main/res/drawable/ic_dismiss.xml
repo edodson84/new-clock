@@ -1,24 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2016 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="80dp"
-    android:height="80dp"
-    android:viewportWidth="80.0"
-    android:viewportHeight="80.0">
+    android:width="48dp"
+    android:height="48dp"
+    android:tint="?attr/colorControlNormal"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
     <path
-        android:fillColor="@color/white"
-        android:pathData="M40,28.3c7.3,0 13.2,5.9 13.2,13.2c0,1.6 -0.3,3.1 -0.8,4.5l2.9,2.9c1.1,-2.2 1.7,-4.7 1.7,-7.4c0,-9.3 -7.6,-16.9 -16.9,-16.9c-2.7,0 -5.1,0.6 -7.4,1.7l2.9,2.9C36.9,28.6 38.4,28.3 40,28.3zM58.8,27.8l-8.7,-7.3l-2.4,2.9l8.7,7.3L58.8,27.8zM22.9,21.3l-2.4,2.4l2.5,2.5l-2.1,1.7l2.7,2.7l2.1,-1.8l1.5,1.5c-2.6,3 -4.1,6.8 -4.1,11.1c0,9.3 7.6,16.9 16.9,16.9c4.2,0 8.1,-1.6 11.1,-4.1l4.1,4.1l2.4,-2.4L24.7,23.2L22.9,21.3zM48.4,51.6c-2.3,1.9 -5.2,3 -8.4,3c-7.3,0 -13.2,-5.9 -13.2,-13.2c0,-3.2 1.1,-6.1 3,-8.4C29.9,33.1 48.4,51.6 48.4,51.6zM32.5,23.2l-2.7,-2.7l-1.6,1.3l2.7,2.7C30.9,24.5 32.5,23.2 32.5,23.2z" />
+        android:fillColor="@android:color/white"
+        android:pathData="M39.15,35 L36.9,32.75Q37.75,31.2 38.15,29.475Q38.55,27.75 38.55,25.95Q38.65,19.55 34.1,15.3Q29.55,11.05 23.3,11.05Q21.6,11.05 19.925,11.45Q18.25,11.85 16.8,12.65L14.6,10.45Q16.65,9.2 18.8,8.625Q20.95,8.05 23.3,8.05Q27.05,8.05 30.375,9.425Q33.7,10.8 36.2,13.2Q38.7,15.6 40.15,18.875Q41.6,22.15 41.55,25.95Q41.5,28.3 40.9,30.6Q40.3,32.9 39.15,35ZM42.65,14.9 L34.45,6.65 36.7,4.7 44.95,12.6ZM42.05,46.4 L35.4,39.75Q33.15,41.75 30.05,42.875Q26.95,44 23.6,44Q19.9,44 16.65,42.6Q13.4,41.2 11,38.75Q8.6,36.3 7.2,33Q5.8,29.7 5.8,25.9Q5.8,22.7 6.85,19.85Q7.9,17 10.1,14.3L7.5,11.7L4.55,14.65L2.3,12.4L5.25,9.45L1.75,5.95L3.9,3.8L44.2,44.25ZM23.6,40.9Q26.2,40.85 28.65,39.975Q31.1,39.1 33.15,37.45L12.1,16.4Q10.4,18.45 9.525,20.875Q8.65,23.3 8.65,25.95Q8.65,32.2 12.95,36.6Q17.25,41 23.6,40.9ZM22.65,26.9Q22.65,26.9 22.65,26.9Q22.65,26.9 22.65,26.9Q22.65,26.9 22.65,26.9Q22.65,26.9 22.65,26.9Q22.65,26.9 22.65,26.9Q22.65,26.9 22.65,26.9ZM26.85,22.7Q26.85,22.7 26.85,22.7Q26.85,22.7 26.85,22.7Q26.85,22.7 26.85,22.7Q26.85,22.7 26.85,22.7Q26.85,22.7 26.85,22.7Q26.85,22.7 26.85,22.7Z" />
 </vector>

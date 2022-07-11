@@ -18,4 +18,20 @@
     <item name="menu_item_sort" type="id" />
     <item name="menu_item_night_mode" type="id" />
     <item name="menu_item_settings" type="id" />
+    <item name="digital_clock" type="id" />
+    <item name="start_guide" type="id" />
+    <item name="start_guide_very_thin" type="id" />
+    <item name="end_guide" type="id" />
+    <item name="end_guide_very_thin" type="id" />
+    <item name="end_guide_thin" type="id" />
+    <item name="start_guide_thin" type="id" />
+    <item name="end_guide_extreme_thin" type="id" />
+    <item name="day_button_0" type="id" />
+    <item name="day_button_1" type="id" />
+    <item name="day_button_2" type="id" />
+    <item name="day_button_3" type="id" />
+    <item name="day_button_4" type="id" />
+    <item name="day_button_5" type="id" />
+    <item name="day_button_6" type="id" />
+    <item name="preemptive_dismiss_button" type="id" />
 </resources>

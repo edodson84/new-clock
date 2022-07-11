@@ -233,8 +233,8 @@ public class AlarmActivity extends BaseActivity
         mSnoozeButton = mContentView.findViewById(R.id.snooze);
         mDismissButton = mContentView.findViewById(R.id.dismiss);
         mHintView = mContentView.findViewById(R.id.hint);
-        mDismissButton.setColorFilter(com.google.android.material.R.attr.colorOnBackground);
-        mSnoozeButton.setColorFilter(com.google.android.material.R.attr.colorOnBackground);
+        mDismissButton.setColorFilter(com.google.android.material.R.attr.colorPrimary);
+        mSnoozeButton.setColorFilter(com.google.android.material.R.attr.colorPrimary);
 
         final TextView titleView = mContentView.findViewById(R.id.title);
         final TextClock digitalClock = mContentView.findViewById(R.id.digital_clock);
@@ -251,8 +251,8 @@ public class AlarmActivity extends BaseActivity
         mDismissButton.setOnClickListener(this);
 
         mAlarmAnimator = AnimatorUtils.getScaleAnimator(mAlarmButton, 1.0f, 0.0f);
-        mSnoozeAnimator = getButtonAnimator(mSnoozeButton, com.google.android.material.R.attr.colorOnBackground);
-        mDismissAnimator = getButtonAnimator(mDismissButton, com.google.android.material.R.attr.colorOnBackground);
+        mSnoozeAnimator = getButtonAnimator(mSnoozeButton, com.google.android.material.R.attr.colorPrimary);
+        mDismissAnimator = getButtonAnimator(mDismissButton, com.google.android.material.R.attr.colorPrimary);
         mPulseAnimator = ObjectAnimator.ofPropertyValuesHolder(pulseView,
                 PropertyValuesHolder.ofFloat(CircleView.RADIUS, 0.0f, pulseView.getRadius()),
                 PropertyValuesHolder.ofObject(CircleView.FILL_COLOR, AnimatorUtils.ARGB_EVALUATOR,
@@ -516,7 +516,6 @@ public class AlarmActivity extends BaseActivity
         mAlarmHandled = true;
         LOGGER.v("Snoozed: %s", mAlarmInstance);
 
-        final int colorAccent = ThemeUtils.resolveColor(this, androidx.appcompat.R.attr.colorPrimaryDark);
         setAnimatedFractions(1.0f /* snoozeFraction */, 0.0f /* dismissFraction */);
 
         final int snoozeMinutes = DataModel.getDataModel().getSnoozeLength();
@@ -526,7 +525,7 @@ public class AlarmActivity extends BaseActivity
                 R.plurals.alarm_alert_snooze_set, snoozeMinutes, snoozeMinutes);
 
         getAlertAnimator(mSnoozeButton, R.string.alarm_alert_snoozed_text, infoText,
-                accessibilityText, colorAccent, colorAccent).start();
+                accessibilityText, Color.TRANSPARENT, mCurrentHourColor).start();
 
         AlarmStateManager.setSnoozeState(this, mAlarmInstance, false /* showToast */);
 

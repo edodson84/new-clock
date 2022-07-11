@@ -17,6 +17,7 @@
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds. -->
 <resources>
+    <dimen name="timer_setup_digit_margin">2.0dip</dimen>
     <dimen name="label_text_size">16sp</dimen>
     <dimen name="label_edittext_padding">21dp</dimen>
     <dimen name="time_margin_top">32dip</dimen>
@@ -25,11 +26,22 @@
     <dimen name="bottom_text_spacing_digital">-8dp</dimen>
     <dimen name="bottom_text_spacing_analog">14dp</dimen>
     <dimen name="bottom_text_spacing_analog_small">6dp</dimen>
-
+    <dimen name="gutter_horizontal_padding">24.0dip</dimen>
+    <dimen name="gutter_horizontal_padding_extreme_thin">4.0dip</dimen>
+    <dimen name="gutter_horizontal_padding_thin">16.0dip</dimen>
+    <dimen name="gutter_horizontal_padding_very_thin">8.0dip</dimen>
     <dimen name="alarm_clock_vertical_margin">12dip</dimen>
-
+    <dimen name="material_corner_radius">28.0dip</dimen>
+    <dimen name="alarm_clock_expanded_vertical_margin">8.0dip</dimen>
+    <item name="tab_content_bottom_padding" type="dimen">@dimen/fab_area_height</item>
+    <dimen name="fab_area_height">72.0dip</dimen>
+    <dimen name="fragment_recycler_view_padding_horizontal">0.0dip</dimen>
     <!-- Analog clock size in the the screen saver -->
     <dimen name="bottom_text_size">16sp</dimen>
+    <dimen name="scrim_visible_height">122.0dip</dimen>
+    <dimen name="preference_fragment_horizontal_margin">8.0dip</dimen>
+    <dimen name="expanded_title_height">169.0dip</dimen>
+    <dimen name="snackbar_bottom_margin">70.0dip</dimen>
 
     <dimen name="alarm_text_font_size">16sp</dimen>
     <dimen name="circletimer_dot_size">30dp</dimen>

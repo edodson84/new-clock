@@ -26,6 +26,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,6 +56,8 @@ import com.best.deskclock.widget.EmptyViewController;
 import com.best.deskclock.widget.toast.SnackbarManager;
 import com.best.deskclock.widget.toast.ToastManager;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +66,7 @@ import java.util.Objects;
 /**
  * A fragment that displays a list of alarm time and allows interaction with them.
  */
-public final class AlarmClockFragment extends DeskClockFragment implements
+public class AlarmClockFragment extends DeskClockFragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
         ScrollHandler,
         TimePickerDialogFragment.OnTimeSetListener {
@@ -97,6 +101,12 @@ public final class AlarmClockFragment extends DeskClockFragment implements
     private AlarmTimeClickHandler mAlarmTimeClickHandler;
     private LinearLayoutManager mLayoutManager;
 
+    private int hour;
+    private int minute;
+
+    @TimeFormat
+    private int clockFormat;
+
     /**
      * The public no-arg constructor required by all fragments.
      */
@@ -116,7 +126,7 @@ public final class AlarmClockFragment extends DeskClockFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.alarm_clock, container, false);
+        final View v = inflater.inflate(R.layout.fragment_alarm, container, false);
         final Context context = getActivity();
 
         mRecyclerView = v.findViewById(R.id.alarms_recycler_view);
@@ -416,7 +426,7 @@ public final class AlarmClockFragment extends DeskClockFragment implements
     @Override
     public void onUpdateFab(@NonNull ImageView fab) {
         fab.setVisibility(View.VISIBLE);
-        fab.setImageResource(R.drawable.ic_fab_add);
+        fab.setImageResource(R.drawable.ic_add_24dp);
         fab.setContentDescription(fab.getResources().getString(R.string.button_alarms));
     }
 
@@ -430,9 +440,34 @@ public final class AlarmClockFragment extends DeskClockFragment implements
     public void startCreatingAlarm() {
         // Clear the currently selected alarm.
         mAlarmTimeClickHandler.setSelectedAlarm(null);
-        TimePickerDialogFragment.show(this);
+        //TimePickerDialogFragment.show(this);
+        Show();
     }
 
+    public void Show() {
+
+        clockFormat = TimeFormat.CLOCK_12H;
+        boolean isSystem24Hour = DateFormat.is24HourFormat(getContext());
+
+        clockFormat = isSystem24Hour ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
+
+
+        //  showFrameworkTimepicker();
+
+        MaterialTimePicker materialTimePicker = new MaterialTimePicker.Builder()
+                .setTimeFormat(clockFormat)
+                .setHour(hour)
+                .setMinute(minute)
+                .build();
+        Context context = getContext();
+        materialTimePicker.show(((AppCompatActivity) context).getSupportFragmentManager(), "fragment_tag");
+
+        materialTimePicker.addOnPositiveButtonClickListener(dialog -> {
+            int newHour = materialTimePicker.getHour();
+            int newMinute = materialTimePicker.getMinute();
+            mAlarmTimeClickHandler.onTimeSet(newHour, newMinute);
+        });
+    }
 
     @Override
     public void onTimeSet(TimePickerDialogFragment fragment, int hourOfDay, int minute) {

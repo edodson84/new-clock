@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2012 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,8 +13,7 @@
      limitations under the License.
 -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,9 +27,9 @@
         android:layout_gravity="center">
 
         <com.best.deskclock.TimerCircleFrameLayout
+            android:id="@+id/stopwatch_time_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/stopwatch_time_wrapper"
             android:layout_gravity="center"
             app:layout_aspectRatio="100%"
             app:layout_heightPercent="@fraction/timer_circle_height_percent"
@@ -53,8 +51,8 @@
         android:id="@+id/laps_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/fab_height" />
 

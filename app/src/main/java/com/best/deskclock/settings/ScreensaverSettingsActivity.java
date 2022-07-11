@@ -43,10 +43,10 @@ public final class ScreensaverSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         mThemeBehavior = DataModel.getDataModel().getThemeButtonBehavior();
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.DARK) {
-            getTheme().applyStyle(R.style.Theme_DeskClock_Actionbar_Dark, true);
+            getTheme().applyStyle(R.style.Theme_DeskClock_RingtonePicker_Dark, true);
         }
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.LIGHT) {
-            getTheme().applyStyle(R.style.Theme_DeskClock_Actionbar_Light, true);
+            getTheme().applyStyle(R.style.Theme_DeskClock_RingtonePicker_Light, true);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screensaver_settings);
