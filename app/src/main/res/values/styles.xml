@@ -4,6 +4,7 @@
 
 
     <style name="Theme.DeskClock.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:fontFamily">@font/fonts</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent
         </item>
@@ -21,6 +22,9 @@
         <item name="snackbarStyle">@style/SnackBarStyle</item>
         <item name="actionOverflowMenuStyle">@style/PopupMenuOverflowStyle</item>
         <item name="materialTimePickerTheme">@style/TimePickerTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="alertDialogStyle">@style/alertdialogstyle</item>
+        <item name="android:textColorHighlight">@color/md_theme_dark_secondary</item>
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -50,6 +54,7 @@
     </style>
 
     <style name="Theme.DeskClock.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:fontFamily">@font/fonts</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent
@@ -67,6 +72,9 @@
         <item name="snackbarStyle">@style/SnackBarStyle</item>
         <item name="actionOverflowMenuStyle">@style/PopupMenuOverflowStyle</item>
         <item name="materialTimePickerTheme">@style/TimePickerTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="alertDialogStyle">@style/alertdialogstyle</item>
+        <item name="android:textColorHighlight">@color/md_theme_light_secondary</item>
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -96,6 +104,7 @@
     </style>
 
     <style name="Theme.DeskClock" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:fontFamily">@font/fonts</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent
@@ -113,6 +122,9 @@
         <item name="snackbarStyle">@style/SnackBarStyle</item>
         <item name="actionOverflowMenuStyle">@style/PopupMenuOverflowStyle</item>
         <item name="materialTimePickerTheme">@style/TimePickerTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="alertDialogStyle">@style/alertdialogstyle</item>
+        <item name="android:textColorHighlight">@color/md_theme_light_secondary</item>
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -139,6 +151,15 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="@style/ThemeOverlay.Material3.Dialog.Alert">
+        <item name="android:background">@drawable/popup_background</item>
+        <item name="dialogCornerRadius">@dimen/material_corner_radius</item>
+    </style>
+
+    <style name="alertdialogstyle" parent="@style/AlertDialog.AppCompat">
+        <item name="singleChoiceItemLayout">@layout/dialoglayout</item>
     </style>
 
     <style name="TimePickerShapeAppearance">

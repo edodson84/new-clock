@@ -17,6 +17,8 @@
 package com.best.deskclock.settings;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.DropDownPreference;
 
 import com.best.deskclock.R;
+import com.best.deskclock.ThemeUtils;
 import com.best.deskclock.Utils;
 
 /**
@@ -136,10 +139,13 @@ public class SimpleMenuPreference extends DropDownPreference {
         @Override
         public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
             final View view = super.getDropDownView(position, convertView, parent);
+            view.setBackgroundResource(R.drawable.dropdownbackground);
+            GradientDrawable drawable = (GradientDrawable) view.getBackground();
             if (position == 0) {
-                view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white_08p));
+                drawable.setAlpha(200);
+                drawable.setColor(ThemeUtils.resolveColor(getContext(), android.R.attr.colorAccent));
             } else {
-                view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.transparent));
+                drawable.setColor(ContextCompat.getColor(getContext(), R.color.transparent));
             }
             return view;
         }

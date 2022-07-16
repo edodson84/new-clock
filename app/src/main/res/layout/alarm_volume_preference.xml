@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:minHeight="?listPreferredItemHeightSmall"
+    android:orientation="horizontal"
+    android:paddingStart="?android:listPreferredItemPaddingStart"
+    android:paddingEnd="?android:listPreferredItemPaddingEnd">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start|center"
+        android:minWidth="44.0dip"
+        android:orientation="horizontal"
+        android:paddingTop="4.0dip"
+        android:paddingEnd="12.0dip"
+        android:paddingBottom="4.0dip">
+
+        <ImageView
+            android:id="@+id/alarm_icon"
+            android:layout_width="24.0dip"
+            android:layout_height="24.0dip"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_alarm_small"
+            app:tint="?colorControlNormal"
+            app:tintMode="src_in" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.0dip"
+        android:layout_marginBottom="8.0dip"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingStart="12.0dip"
+            android:singleLine="true"
+            android:textAppearance="?android:textAppearanceListItem"
+            android:textColor="?android:textColorPrimary" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/seekbar"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/touch_target_min_size"
+            android:layout_gravity="center_vertical"
+            android:maxHeight="@dimen/touch_target_min_size" />
+    </LinearLayout>
+</LinearLayout>

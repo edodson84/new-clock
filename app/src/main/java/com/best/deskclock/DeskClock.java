@@ -135,7 +135,6 @@ public class DeskClock extends BaseActivity
 
         return false;
     };
-    private ThemeButtonBehavior mThemeBehavior;
     /**
      * Displays a snackbar explaining why alarms may not fire or may fire silently.
      */
@@ -192,7 +191,7 @@ public class DeskClock extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        mThemeBehavior = DataModel.getDataModel().getThemeButtonBehavior();
+        ThemeButtonBehavior mThemeBehavior = DataModel.getDataModel().getThemeButtonBehavior();
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.DARK) {
             getTheme().applyStyle(R.style.Theme_DeskClock_Dark, true);
         }
@@ -357,20 +356,20 @@ public class DeskClock extends BaseActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         mOptionsMenuManager.onCreateOptionsMenu(menu);
         return true;
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public boolean onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
         mOptionsMenuManager.onPrepareOptionsMenu(menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return mOptionsMenuManager.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 

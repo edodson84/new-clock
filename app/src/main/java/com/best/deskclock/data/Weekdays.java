@@ -173,7 +173,7 @@ public final class Weekdays {
      * @return {@code true} iff at least one weekday is enabled in the repeat schedule
      */
     public boolean isRepeating() {
-        return true;
+        return mBits != 0;
     }
 
     /**

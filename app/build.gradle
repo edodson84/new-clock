@@ -20,7 +20,7 @@ android {
         minSdk 23
         targetSdk 25
         versionCode 1
-        versionName '1'
+        versionName '1.0'
         signingConfig signingConfigs.Retail
     }
     buildTypes {

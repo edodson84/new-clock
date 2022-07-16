@@ -30,7 +30,6 @@ import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.preference.Preference;
@@ -40,12 +39,13 @@ import com.best.deskclock.R;
 import com.best.deskclock.RingtonePreviewKlaxon;
 import com.best.deskclock.Utils;
 import com.best.deskclock.data.DataModel;
+import com.google.android.material.slider.Slider;
 
 public class AlarmVolumePreference extends Preference {
 
     private static final long ALARM_PREVIEW_DURATION_MS = 2000;
 
-    private SeekBar mSeekbar;
+    private Slider mSeekbar;
     private ImageView mAlarmIcon;
     private boolean mPreviewPlaying;
 
@@ -63,60 +63,39 @@ public class AlarmVolumePreference extends Preference {
         // Disable click feedback for this preference.
         holder.itemView.setClickable(false);
 
-        mSeekbar = (SeekBar) holder.findViewById(R.id.seekbar);
-        mSeekbar.setMax(audioManager.getStreamMaxVolume(STREAM_ALARM));
-        mSeekbar.setProgress(audioManager.getStreamVolume(STREAM_ALARM));
-        mAlarmIcon = (ImageView) holder.findViewById(android.R.id.icon);
-
+        mSeekbar = (Slider) holder.findViewById(R.id.seekbar);
+        mSeekbar.setStepSize(1f);
+        mSeekbar.setTickVisible(false);
+        mSeekbar.setValueFrom(0f);
+        mSeekbar.setValueTo(Math.round(audioManager.getStreamMaxVolume(STREAM_ALARM)));
+        mSeekbar.setValue(Math.round(audioManager.getStreamVolume(STREAM_ALARM)));
+        mAlarmIcon = (ImageView) holder.findViewById(R.id.alarm_icon);
         onSeekbarChanged();
 
-        final ContentObserver volumeObserver = new ContentObserver(mSeekbar.getHandler()) {
-            @Override
-            public void onChange(boolean selfChange) {
-                // Volume was changed elsewhere, update our slider.
-                mSeekbar.setProgress(audioManager.getStreamVolume(STREAM_ALARM));
-            }
-        };
 
-        mSeekbar.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View v) {
-                context.getContentResolver().registerContentObserver(Settings.System.CONTENT_URI,
-                        true, volumeObserver);
+        mSeekbar.addOnChangeListener((slider, value, fromUser) -> {
+            if (fromUser) {
+                audioManager.setStreamVolume(STREAM_ALARM, Math.round(value), 0);
             }
-
-            @Override
-            public void onViewDetachedFromWindow(View v) {
-                context.getContentResolver().unregisterContentObserver(volumeObserver);
-            }
+            onSeekbarChanged();
         });
 
-        mSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mSeekbar.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioManager.setStreamVolume(STREAM_ALARM, progress, 0);
-                }
-                onSeekbarChanged();
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (!mPreviewPlaying && seekBar.getProgress() != 0) {
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                if (!mPreviewPlaying && slider.getValue() != 0) {
                     // If we are not currently playing and progress is set to non-zero, start.
                     RingtonePreviewKlaxon.start(
                             context, DataModel.getDataModel().getDefaultAlarmRingtoneUri());
                     mPreviewPlaying = true;
-                    seekBar.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
+                    slider.postDelayed((Runnable) () -> {
                             RingtonePreviewKlaxon.stop(context);
                             mPreviewPlaying = false;
-                        }
                     }, ALARM_PREVIEW_DURATION_MS);
                 }
             }
@@ -125,7 +104,7 @@ public class AlarmVolumePreference extends Preference {
 
     private void onSeekbarChanged() {
         mSeekbar.setEnabled(doesDoNotDisturbAllowAlarmPlayback());
-        mAlarmIcon.setImageResource(mSeekbar.getProgress() == 0 ?
+        mAlarmIcon.setImageResource(mSeekbar.getValue() == 0 ?
                 R.drawable.ic_alarm_off_24dp : R.drawable.ic_alarm_small);
     }
 

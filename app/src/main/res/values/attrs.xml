@@ -27,5 +27,5 @@
         <!-- The radius of the circle. -->
         <attr name="radius" format="dimension" />
     </declare-styleable>
-
+    <attr name="popup_background" format="reference" />
 </resources>

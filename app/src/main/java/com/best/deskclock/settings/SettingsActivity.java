@@ -18,6 +18,7 @@ package com.best.deskclock.settings;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -86,7 +87,6 @@ public final class SettingsActivity extends BaseActivity {
     public static final String PREFS_FRAGMENT_TAG = "prefs_fragment";
     public static final String PREFERENCE_DIALOG_FRAGMENT_TAG = "preference_dialog";
     private final OptionsMenuManager mOptionsMenuManager = new OptionsMenuManager();
-    private ThemeButtonBehavior mThemeBehavior;
 
     /**
      * The controller that shows the drop shadow when content is not scrolled to the top.
@@ -94,7 +94,7 @@ public final class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mThemeBehavior = DataModel.getDataModel().getThemeButtonBehavior();
+        ThemeButtonBehavior mThemeBehavior = DataModel.getDataModel().getThemeButtonBehavior();
         if (mThemeBehavior == DataModel.ThemeButtonBehavior.DARK) {
             getTheme().applyStyle(R.style.Theme_DeskClock_Settings_Dark, true);
         }
@@ -112,6 +112,8 @@ public final class SettingsActivity extends BaseActivity {
         assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout coll_toolbar = findViewById(R.id.collapsing_toolbar_layout);
+        coll_toolbar.setCollapsedTitleTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/evolvesans.ttf"));
+        coll_toolbar.setExpandedTitleTypeface(Typeface.createFromAsset(getBaseContext().getAssets(), "fonts/evolvesans.ttf"));
         coll_toolbar.setTitle("Settings");
         mOptionsMenuManager.addMenuItemController(new NavUpMenuItemController(this))
                 .addMenuItemController(MenuItemControllerFactory.getInstance()
@@ -139,19 +141,19 @@ public final class SettingsActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         mOptionsMenuManager.onCreateOptionsMenu(menu);
         return true;
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public boolean onPrepareOptionsMenu(@NonNull Menu menu) {
         mOptionsMenuManager.onPrepareOptionsMenu(menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return mOptionsMenuManager.onOptionsItemSelected(item)
                 || super.onOptionsItemSelected(item);
     }

@@ -150,6 +150,7 @@ public final class AlarmStateManager extends BroadcastReceiver {
         sCurrentTimeFactory = currentTimeFactory;
     }
 
+
     static void setStateChangeScheduler(StateChangeScheduler stateChangeScheduler) {
         if (stateChangeScheduler == null) {
             stateChangeScheduler = new AlarmManagerStateChangeScheduler();

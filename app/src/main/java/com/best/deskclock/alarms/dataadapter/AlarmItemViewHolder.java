@@ -17,10 +17,14 @@
 package com.best.deskclock.alarms.dataadapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.best.deskclock.AlarmUtils;
 import com.best.deskclock.ItemAdapter;
@@ -29,6 +33,8 @@ import com.best.deskclock.R;
 import com.best.deskclock.provider.Alarm;
 import com.best.deskclock.provider.AlarmInstance;
 import com.best.deskclock.widget.TextTime;
+
+import java.util.Calendar;
 
 /**
  * Abstract ViewHolder for alarm time items.
@@ -61,13 +67,10 @@ public abstract class AlarmItemViewHolder extends ItemAdapter.ItemViewHolder<Ala
         onOff = itemView.findViewById(R.id.onoff);
         arrow = itemView.findViewById(R.id.arrow);
         preemptiveDismissButton = itemView.findViewById(R.id.preemptive_dismiss_button);
-        preemptiveDismissButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlarmInstance alarmInstance = getItemHolder().getAlarmInstance();
-                if (alarmInstance != null) {
-                    getItemHolder().getAlarmTimeClickHandler().dismissAlarmInstance(alarmInstance);
-                }
+        preemptiveDismissButton.setOnClickListener(v -> {
+            final AlarmInstance alarmInstance = getItemHolder().getAlarmInstance();
+            if (alarmInstance != null) {
+                getItemHolder().getAlarmTimeClickHandler().dismissAlarmInstance(alarmInstance);
             }
         });
         onOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -99,7 +102,7 @@ public abstract class AlarmItemViewHolder extends ItemAdapter.ItemViewHolder<Ala
         clock.setAlpha(alarm.enabled ? CLOCK_ENABLED_ALPHA : CLOCK_DISABLED_ALPHA);
     }
 
-    protected boolean bindPreemptiveDismissButton(Context context, Alarm alarm,
+    protected void bindPreemptiveDismissButton(Context context, Alarm alarm,
                                                   AlarmInstance alarmInstance) {
         final boolean canBind = alarm.canPreemptivelyDismiss() && alarmInstance != null;
         if (canBind) {
@@ -114,6 +117,5 @@ public abstract class AlarmItemViewHolder extends ItemAdapter.ItemViewHolder<Ala
             preemptiveDismissButton.setVisibility(View.GONE);
             preemptiveDismissButton.setClickable(false);
         }
-        return canBind;
     }
 }

@@ -41,6 +41,7 @@ import androidx.core.app.NotificationCompat;
 import com.best.deskclock.AlarmUtils;
 import com.best.deskclock.NotificationUtils;
 import com.best.deskclock.R;
+import com.best.deskclock.ThemeUtils;
 import com.best.deskclock.Utils;
 import com.best.deskclock.events.Events;
 import com.best.deskclock.timer.ExpiredTimersActivity;
@@ -178,7 +179,7 @@ class TimerNotificationBuilder {
                 .setSortKey(nm.getTimerNotificationSortKey())
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setColor(com.google.android.material.R.attr.colorPrimary);
+                .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent));
 
         for (Action action : actions) {
             notification.addAction(action);
@@ -292,7 +293,7 @@ class TimerNotificationBuilder {
                 .setSmallIcon(R.drawable.stat_notify_timer)
                 .setFullScreenIntent(pendingFullScreen, true)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setColor(com.google.android.material.R.attr.colorPrimary);
+                .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent));
 
         for (Action action : actions) {
             notification.addAction(action);
@@ -378,7 +379,7 @@ class TimerNotificationBuilder {
                 .setSortKey(nm.getTimerNotificationMissedSortKey())
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .addAction(action)
-                .setColor(com.google.android.material.R.attr.colorPrimary);
+                .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent));
 
         if (Utils.isNOrLater()) {
             notification.setCustomContentView(buildChronometer(pname, base, true, stateText))

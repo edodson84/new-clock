@@ -139,9 +139,9 @@ public class LabelDialogFragment extends DialogFragment {
         final Context context = dialog.getContext();
 
         final int colorControlActivated =
-                ThemeUtils.resolveColor(context, androidx.appcompat.R.attr.colorControlActivated);
+                ThemeUtils.resolveColor(context, android.R.attr.colorControlActivated);
         final int colorControlNormal =
-                ThemeUtils.resolveColor(context, androidx.appcompat.R.attr.colorControlNormal);
+                ThemeUtils.resolveColor(context, android.R.attr.colorControlNormal);
 
         mLabelBox = new AppCompatEditText(context);
         mLabelBox.setSupportBackgroundTintList(new ColorStateList(

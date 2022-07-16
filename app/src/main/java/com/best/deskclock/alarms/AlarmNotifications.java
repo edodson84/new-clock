@@ -40,6 +40,7 @@ import com.best.deskclock.DeskClock;
 import com.best.deskclock.LogUtils;
 import com.best.deskclock.NotificationUtils;
 import com.best.deskclock.R;
+import com.best.deskclock.ThemeUtils;
 import com.best.deskclock.Utils;
 import com.best.deskclock.provider.Alarm;
 import com.best.deskclock.provider.AlarmInstance;
@@ -100,7 +101,7 @@ public final class AlarmNotifications {
                         R.string.alarm_alert_predismiss_title))
                 .setContentText(AlarmUtils.getAlarmText(
                         context, instance, true /* includeLabel */))
-                .setColor(com.google.android.material.R.attr.colorPrimary)
+                .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent))
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setAutoCancel(false)
                 .setSortKey(createSortKey(instance))
@@ -219,7 +220,7 @@ public final class AlarmNotifications {
                     ALARM_UPCOMING_NOTIFICATION_CHANNEL_ID)
                     .setShowWhen(false)
                     .setContentIntent(firstUpcoming.contentIntent)
-                    .setColor(com.google.android.material.R.attr.colorPrimary)
+                    .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent))
                     .setSmallIcon(R.drawable.stat_notify_alarm)
                     .setGroup(UPCOMING_GROUP_KEY)
                     .setGroupSummary(true)
@@ -253,7 +254,7 @@ public final class AlarmNotifications {
             summary = new NotificationCompat.Builder(context, ALARM_MISSED_NOTIFICATION_CHANNEL_ID)
                     .setShowWhen(false)
                     .setContentIntent(firstMissed.contentIntent)
-                    .setColor(com.google.android.material.R.attr.colorPrimary)
+                    .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent))
                     .setSmallIcon(R.drawable.stat_notify_alarm)
                     .setGroup(MISSED_GROUP_KEY)
                     .setGroupSummary(true)
@@ -276,7 +277,7 @@ public final class AlarmNotifications {
                 .setContentTitle(instance.getLabelOrDefault(context))
                 .setContentText(context.getString(R.string.alarm_alert_snooze_until,
                         AlarmUtils.getFormattedTime(context, instance.getAlarmTime())))
-                .setColor(com.google.android.material.R.attr.colorPrimary)
+                .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent))
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setAutoCancel(false)
                 .setSortKey(createSortKey(instance))
@@ -322,7 +323,7 @@ public final class AlarmNotifications {
                 .setContentTitle(context.getString(R.string.alarm_missed_title))
                 .setContentText(instance.mLabel.isEmpty() ? alarmTime :
                         context.getString(R.string.alarm_missed_text, alarmTime, label))
-                .setColor(com.google.android.material.R.attr.colorPrimary)
+                .setColor(ThemeUtils.resolveColor(context, android.R.attr.colorAccent))
                 .setSortKey(createSortKey(instance))
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -366,7 +367,7 @@ public final class AlarmNotifications {
                 .setContentTitle(instance.getLabelOrDefault(service))
                 .setContentText(AlarmUtils.getFormattedTime(
                         service, instance.getAlarmTime()))
-                .setColor(com.google.android.material.R.attr.colorPrimary)
+                .setColor(ThemeUtils.resolveColor(service.getBaseContext(), android.R.attr.colorAccent))
                 .setSmallIcon(R.drawable.stat_notify_alarm)
                 .setOngoing(true)
                 .setAutoCancel(false)
@@ -434,15 +435,19 @@ public final class AlarmNotifications {
         switch (instance.mAlarmState) {
             case AlarmInstance.LOW_NOTIFICATION_STATE:
                 showUpcomingNotification(context, instance, true);
+                LogUtils.d("low state");
                 break;
             case AlarmInstance.HIGH_NOTIFICATION_STATE:
                 showUpcomingNotification(context, instance, false);
+                LogUtils.d("high state");
                 break;
             case AlarmInstance.SNOOZE_STATE:
                 showSnoozeNotification(context, instance);
+                LogUtils.d("snooze state");
                 break;
             case AlarmInstance.MISSED_STATE:
                 showMissedNotification(context, instance);
+                LogUtils.d("missed state");
                 break;
             default:
                 LogUtils.d("No notification to update");

@@ -250,13 +250,7 @@ public final class ExpandedAlarmViewHolder extends AlarmItemViewHolder {
 
             }
         }
-        if (alarm.daysOfWeek.isRepeating()) {
-            repeat.setChecked(true);
-            repeatDays.setVisibility(View.VISIBLE);
-        } else {
-            repeat.setChecked(false);
-            repeatDays.setVisibility(View.GONE);
-        }
+
     }
 
     private void bindEditLabel(Context context, Alarm alarm) {
