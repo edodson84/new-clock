@@ -24,7 +24,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.best.deskclock.AnalogClock
+        <com.fissy.deskclock.AnalogClock
             android:id="@+id/analog_clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_marginEnd="@dimen/analog_clock_margin"
             android:layout_marginRight="@dimen/analog_clock_margin" />
 
-        <com.best.deskclock.widget.AutoSizingTextClock
+        <com.fissy.deskclock.widget.AutoSizingTextClock
             android:id="@+id/digital_clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

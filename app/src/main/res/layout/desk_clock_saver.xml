@@ -31,7 +31,7 @@
         android:layout_marginBottom="@dimen/screensaver_margin"
         android:orientation="vertical">
 
-        <com.best.deskclock.AnalogClock
+        <com.fissy.deskclock.AnalogClock
             android:id="@+id/analog_clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

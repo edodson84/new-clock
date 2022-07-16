@@ -26,12 +26,12 @@
         android:layout_weight="@integer/gutter_width_percent" />
 
     <!-- Guttered content. -->
-    <com.best.deskclock.stopwatch.StopwatchLandscapeLayout
+    <com.fissy.deskclock.stopwatch.StopwatchLandscapeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="@integer/guttered_content_width_percent">
 
-        <com.best.deskclock.TimerCircleFrameLayout
+        <com.fissy.deskclock.TimerCircleFrameLayout
             android:id="@+id/stopwatch_time_wrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,12 +41,12 @@
             <include layout="@layout/stopwatch_time" />
 
             <!-- Sufficient space exists to include the bounding stopwatch circle. -->
-            <com.best.deskclock.stopwatch.StopwatchCircleView
+            <com.fissy.deskclock.stopwatch.StopwatchCircleView
                 android:id="@+id/stopwatch_circle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.best.deskclock.TimerCircleFrameLayout>
+        </com.fissy.deskclock.TimerCircleFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/laps_list"
@@ -55,7 +55,7 @@
             android:clipToPadding="false"
             android:paddingBottom="@dimen/fab_height" />
 
-    </com.best.deskclock.stopwatch.StopwatchLandscapeLayout>
+    </com.fissy.deskclock.stopwatch.StopwatchLandscapeLayout>
 
     <!-- Right gutter. -->
     <Space

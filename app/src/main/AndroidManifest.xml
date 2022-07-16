@@ -16,7 +16,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.best.deskclock">
+    package="com.fissy.deskclock">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -31,10 +31,10 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name=".DeskClockApplication"
+        android:name="com.fissy.deskclock.DeskClockApplication"
         android:allowBackup="false"
         android:appCategory="productivity"
-        android:backupAgent="DeskClockBackupAgent"
+        android:backupAgent="com.fissy.deskclock.DeskClockBackupAgent"
         android:fullBackupContent="@xml/backup_scheme"
         android:fullBackupOnly="true"
         android:icon="@mipmap/launcher_clock"
@@ -49,7 +49,7 @@
         <!-- ============================================================== -->
 
         <activity
-            android:name=".DeskClock"
+            android:name="com.fissy.deskclock.DeskClock"
             android:exported="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
@@ -62,30 +62,30 @@
         </activity>
 
         <activity
-            android:name=".ringtone.RingtonePickerActivity"
+            android:name="com.fissy.deskclock.ringtone.RingtonePickerActivity"
             android:excludeFromRecents="true"
-            android:parentActivityName=".DeskClock"
+            android:parentActivityName="com.fissy.deskclock.DeskClock"
             android:taskAffinity=""
             android:theme="@style/Theme.DeskClock.RingtonePicker" />
 
         <activity
-            android:name=".worldclock.CitySelectionActivity"
+            android:name="com.fissy.deskclock.worldclock.CitySelectionActivity"
             android:excludeFromRecents="true"
             android:label="@string/cities_activity_title"
-            android:parentActivityName=".DeskClock"
+            android:parentActivityName="com.fissy.deskclock.DeskClock"
             android:taskAffinity=""
             android:theme="@style/Theme.DeskClock.RingtonePicker" />
 
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name="com.fissy.deskclock.settings.SettingsActivity"
             android:excludeFromRecents="true"
             android:label="@string/settings"
-            android:parentActivityName=".DeskClock"
+            android:parentActivityName="com.fissy.deskclock.DeskClock"
             android:taskAffinity=""
             android:theme="@style/Theme.DeskClock.Settings" />
 
         <activity
-            android:name=".HandleShortcuts"
+            android:name="com.fissy.deskclock.HandleShortcuts"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
             android:taskAffinity=""
@@ -96,7 +96,7 @@
         <!-- ============================================================== -->
 
         <activity
-            android:name="com.best.deskclock.HandleApiCalls"
+            android:name="com.fissy.deskclock.HandleApiCalls"
             android:excludeFromRecents="true"
             android:exported="true"
             android:permission="com.android.alarm.permission.SET_ALARM"
@@ -122,14 +122,14 @@
         <activity-alias
             android:name="HandleSetAlarm"
             android:exported="true"
-            android:targetActivity="com.best.deskclock.HandleApiCalls" />
+            android:targetActivity="com.fissy.deskclock.HandleApiCalls" />
 
         <!-- ============================================================== -->
         <!-- Alarm components.                                              -->
         <!-- ============================================================== -->
 
         <activity
-            android:name=".alarms.AlarmActivity"
+            android:name="com.fissy.deskclock.alarms.AlarmActivity"
             android:directBootAware="true"
             android:excludeFromRecents="true"
             android:resizeableActivity="false"
@@ -142,18 +142,18 @@
             tools:targetApi="o_mr1" />
 
         <activity
-            android:name=".AlarmSelectionActivity"
+            android:name="com.fissy.deskclock.AlarmSelectionActivity"
             android:label="@string/dismiss_alarm"
             android:theme="@android:style/Theme.Material.Dialog.NoActionBar" />
 
         <provider
-            android:name=".provider.ClockProvider"
-            android:authorities="com.best.deskclock"
+            android:name="com.fissy.deskclock.provider.ClockProvider"
+            android:authorities="com.fissy.deskclock"
             android:directBootAware="true"
             android:exported="false" />
 
         <receiver
-            android:name=".AlarmInitReceiver"
+            android:name="com.fissy.deskclock.AlarmInitReceiver"
             android:directBootAware="true"
             android:exported="false">
             <intent-filter>
@@ -168,11 +168,11 @@
         </receiver>
 
         <receiver
-            android:name=".alarms.AlarmStateManager"
+            android:name="com.fissy.deskclock.alarms.AlarmStateManager"
             android:directBootAware="true" />
 
         <service
-            android:name=".alarms.AlarmService"
+            android:name="com.fissy.deskclock.alarms.AlarmService"
             android:directBootAware="true" />
 
         <!-- ============================================================== -->
@@ -180,7 +180,7 @@
         <!-- ============================================================== -->
 
         <activity
-            android:name=".timer.ExpiredTimersActivity"
+            android:name="com.fissy.deskclock.timer.ExpiredTimersActivity"
             android:configChanges="screenSize|keyboardHidden|keyboard|navigation"
             android:directBootAware="true"
             android:excludeFromRecents="true"
@@ -192,7 +192,7 @@
 
         <!-- Legacy broadcast receiver that honors old scheduled timers across app upgrade. -->
         <receiver
-            android:name="com.best.deskclock.timer.TimerReceiver"
+            android:name="com.fissy.deskclock.timer.TimerReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="times_up" />
@@ -200,7 +200,7 @@
         </receiver>
 
         <service
-            android:name=".timer.TimerService"
+            android:name="com.fissy.deskclock.timer.TimerService"
             android:description="@string/timer_service_desc"
             android:directBootAware="true" />
 
@@ -209,7 +209,7 @@
         <!-- ============================================================== -->
 
         <service
-            android:name=".stopwatch.StopwatchService"
+            android:name="com.fissy.deskclock.stopwatch.StopwatchService"
             android:description="@string/stopwatch_service_desc"
             android:directBootAware="true" />
 
@@ -219,22 +219,22 @@
         <!-- ============================================================== -->
 
         <activity
-            android:name=".ScreensaverActivity"
+            android:name="com.fissy.deskclock.ScreensaverActivity"
             android:excludeFromRecents="true"
             android:resizeableActivity="false"
             android:taskAffinity=""
             tools:ignore="NonResizeableActivity" />
 
         <activity
-            android:name=".settings.ScreensaverSettingsActivity"
+            android:name="com.fissy.deskclock.settings.ScreensaverSettingsActivity"
             android:excludeFromRecents="true"
             android:label="@string/screensaver_settings"
-            android:parentActivityName=".DeskClock"
+            android:parentActivityName="com.fissy.deskclock.DeskClock"
             android:taskAffinity=""
             android:theme="@style/Theme.DeskClock.RingtonePicker" />
 
         <service
-            android:name=".Screensaver"
+            android:name="com.fissy.deskclock.Screensaver"
             android:exported="false"
             android:label="@string/app_label"
             android:permission="android.permission.BIND_DREAM_SERVICE">
@@ -254,7 +254,7 @@
         <!-- ============================================================== -->
 
         <receiver
-            android:name="com.best.alarmclock.AnalogAppWidgetProvider"
+            android:name="com.fissy.alarmclock.AnalogAppWidgetProvider"
             android:exported="false"
             android:label="@string/analog_gadget">
             <intent-filter>
@@ -270,7 +270,7 @@
         </receiver>
 
         <receiver
-            android:name="com.best.alarmclock.DigitalAppWidgetProvider"
+            android:name="com.fissy.alarmclock.DigitalAppWidgetProvider"
             android:exported="false"
             android:label="@string/digital_gadget">
             <intent-filter>
@@ -291,7 +291,7 @@
         </receiver>
 
         <service
-            android:name="com.best.alarmclock.DigitalAppWidgetCityService"
+            android:name="com.fissy.alarmclock.DigitalAppWidgetCityService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
     </application>

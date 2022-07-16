@@ -19,5 +19,5 @@
         path="alarms.db" />
     <include
         domain="sharedpref"
-        path="com.best.deskclock_preferences.xml" />
+        path="com.fissy.deskclock_preferences.xml" />
 </full-backup-content>

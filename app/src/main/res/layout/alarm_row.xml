@@ -26,7 +26,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.best.deskclock.widget.TextTime
+        <com.fissy.deskclock.widget.TextTime
             android:id="@+id/digital_clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
 
     </LinearLayout>
 
-    <com.best.deskclock.widget.EllipsizeLayout
+    <com.fissy.deskclock.widget.EllipsizeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="end"
@@ -64,6 +64,6 @@
             android:singleLine="true"
             android:textSize="@dimen/label_font_size"
             tools:text="Pick up kids" />
-    </com.best.deskclock.widget.EllipsizeLayout>
+    </com.fissy.deskclock.widget.EllipsizeLayout>
 
 </LinearLayout>

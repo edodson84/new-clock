@@ -22,7 +22,7 @@
     android:layoutDirection="ltr"
     android:orientation="horizontal">
 
-    <com.best.deskclock.widget.AutoSizingTextView
+    <com.fissy.deskclock.widget.AutoSizingTextView
         android:id="@+id/stopwatch_time_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

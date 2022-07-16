@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toStartOf="@id/end_guide_thin"
             app:layout_constraintTop_toBottomOf="@id/digital_clock" />
 
-        <com.best.deskclock.widget.EllipsizeLayout
+        <com.fissy.deskclock.widget.EllipsizeLayout
             android:id="@+id/alarm_info"
             android:layout_width="0.0dip"
             android:layout_height="@dimen/touch_target_min_size"
@@ -88,7 +88,7 @@
                 android:paddingRight="@dimen/icon_margin"
                 android:visibility="visible" />
 
-        </com.best.deskclock.widget.EllipsizeLayout>
+        </com.fissy.deskclock.widget.EllipsizeLayout>
 
         <include
             android:id="@+id/repeat_days"

@@ -61,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="@id/end_guide_thin"
             app:layout_constraintTop_toBottomOf="@id/digital_clock" />
 
-        <com.best.deskclock.widget.EllipsizeLayout
+        <com.fissy.deskclock.widget.EllipsizeLayout
             android:id="@+id/alarm_info"
             android:layout_width="0.0dip"
             android:layout_height="@dimen/touch_target_min_size"
@@ -94,7 +94,7 @@
                 android:paddingStart="@dimen/icon_margin"
                 android:paddingEnd="@dimen/icon_margin"
                 android:singleLine="true" />
-        </com.best.deskclock.widget.EllipsizeLayout>
+        </com.fissy.deskclock.widget.EllipsizeLayout>
 
         <Button
             android:id="@id/preemptive_dismiss_button"

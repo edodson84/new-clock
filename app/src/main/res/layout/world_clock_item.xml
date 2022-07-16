@@ -43,7 +43,7 @@
             android:singleLine="true"
             tools:ignore="RtlSymmetry" />
 
-        <com.best.deskclock.AnalogClock
+        <com.fissy.deskclock.AnalogClock
             android:id="@+id/analog_clock"
             android:layout_width="@dimen/world_clock_analog_size"
             android:layout_height="@dimen/world_clock_analog_size"
